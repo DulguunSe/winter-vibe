@@ -1,10 +1,25 @@
 import { Code2, TrendingUp, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState, useEffect } from "react";
 
 export function Hero() {
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const fullText = "Хиймэл оюун ухаан хүний ажлыг булаахгүй. Харин хиймэл оюун ухааныг ашигладаг хүмүүс, ашигладаггүй хүмүүсийн ажлыг булаана.";
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(fullText.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, 50);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
@@ -27,12 +42,20 @@ export function Hero() {
         </h1>
         
         <p className="text-xl md:text-2xl text-blue-100 mb-4 max-w-3xl mx-auto">
-          AI ашиглан Вэб болон App Хөгжүүлэх Сургалт
+          Кодыг Биш, Харин Ирээдүйг Бич.
         </p>
         
-        <p className="text-lg text-slate-200 mb-12 max-w-2xl mx-auto">
-          Уламжлалт кодчлол биш - Хиймэл оюун ухааны хүчээр website болон mobile app бүтээх шинэ эрин
-        </p>
+        <div className="relative mb-12 max-w-2xl mx-auto">
+          {/* Hidden text to reserve space */}
+          <p className="text-lg text-slate-200 invisible">
+            {fullText}
+          </p>
+          {/* Animated text */}
+          <p className="text-lg text-slate-200 absolute inset-0">
+            {displayedText}
+            <span className="inline-block w-1 h-5 bg-cyan-400 ml-1 animate-pulse"></span>
+          </p>
+        </div>
 
         {/* Icons */}
         <div className="flex items-center justify-center gap-8 mb-12">

@@ -19,7 +19,7 @@ export function CourseInfo() {
             <CardContent className="p-6">
               <Calendar className="w-10 h-10 text-blue-300 mb-4" />
               <h3 className="text-xl mb-2 text-white">Хичээлийн хуваарь</h3>
-              <p className="text-slate-300">Долоо хоног бүр 2-3 удаа</p>
+              <p className="text-slate-300">Долоо хоног бүр 3 удаа</p>
               <p className="text-sm text-slate-400 mt-2">Уян хатан цаг хуваарь</p>
             </CardContent>
           </Card>
@@ -28,7 +28,7 @@ export function CourseInfo() {
             <CardContent className="p-6">
               <Clock className="w-10 h-10 text-cyan-300 mb-4" />
               <h3 className="text-xl mb-2 text-white">Үргэлжлэх хугацаа</h3>
-              <p className="text-slate-300">8-12 долоо хоног</p>
+              <p className="text-slate-300">1 сар</p>
               <p className="text-sm text-slate-400 mt-2">Интенсив сургалт</p>
             </CardContent>
           </Card>
@@ -37,17 +37,17 @@ export function CourseInfo() {
             <CardContent className="p-6">
               <MapPin className="w-10 h-10 text-sky-300 mb-4" />
               <h3 className="text-xl mb-2 text-white">Хэлбэр</h3>
-              <p className="text-slate-300">Online болон Offline</p>
-              <p className="text-sm text-slate-400 mt-2">Хаанаас ч орох боломжтой</p>
+              <p className="text-slate-300">Танхим</p>
+              <p className="text-sm text-slate-400 mt-2">Хичээл 100% танхимаар орно</p>
             </CardContent>
           </Card>
 
           <Card className="bg-gradient-to-br from-teal-900/30 to-cyan-900/30 border-teal-500/30">
             <CardContent className="p-6">
-              <Award className="w-10 h-10 text-teal-300 mb-4" />
-              <h3 className="text-xl mb-2 text-white">Гэрчилгээ</h3>
-              <p className="text-slate-300">Төгссөний гэрчилгээ</p>
-              <p className="text-sm text-slate-400 mt-2">+ Portfolio төсөл</p>
+              <div className="text-3xl mb-4">🏊‍♂️</div>
+              <h3 className="text-xl mb-2 text-white">Усан бассейн</h3>
+              <p className="text-slate-300"></p>
+              <p className="text-sm text-slate-400 mt-2">Амралт, сэргэх орчин бүрдүүлнэ</p>
             </CardContent>
           </Card>
         </div>

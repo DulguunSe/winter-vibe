@@ -1,5 +1,6 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Badge } from "./ui/badge";
+import winterCodingImage from "figma:asset/08c7589a8cf27013fc34ef64506adaf827b8a45f.png";
 
 export function About() {
   return (
@@ -9,9 +10,9 @@ export function About() {
           {/* Image */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-2xl" />
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1710905775964-3a2ec8f32c24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aW50ZXIlMjBjb3p5JTIwY29kaW5nfGVufDF8fHx8MTc2NDU4MDcyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Coding workspace"
+            <img
+              src={winterCodingImage}
+              alt="Winter coding workspace"
               className="relative rounded-2xl shadow-2xl w-full h-auto"
             />
           </div>
@@ -30,7 +31,7 @@ export function About() {
             
             <p className="text-slate-300 text-lg mb-6">
               Уламжлалт кодчлол сурахад жилүүд шаардагдаж байсан бол, одоо <span className="text-cyan-300">Хиймэл оюун ухаан</span> ашиглаж 
-              хэдхэн долоо хоногт website болон mobile app бүтээх боломжтой болсон. 
+              хэдхэн цагт website болон mobile app бүтээх боломжтой болсон. 
               ChatGPT, Claude, Cursor, v0 зэрэг AI хэрэгслүүд танд мэргэжлийн түвшний 
               програм хангамж бүтээхэд туслана.
             </p>
@@ -40,7 +41,7 @@ export function About() {
               мэргэжлийн түвшинд ашиглаж, бодит төслүүд хөгжүүлэх арга барилыг заана. 
               Код бичихээс илүү <span className="text-cyan-300">санаагаа хэрэгжүүлэх</span> дээр анхаарна.
             </p>
-
+                                        
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
                 <div className="text-3xl mb-2">🌐</div>

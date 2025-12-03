@@ -1,5 +1,6 @@
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
+import { Pool } from "./components/Pool";
 import { Features } from "./components/Features";
 import { CourseInfo } from "./components/CourseInfo";
 import { CTA } from "./components/CTA";
@@ -11,6 +12,7 @@ export default function App() {
       <Hero />
       <About />
       <Features />
+      <Pool />
       <CourseInfo />
       <CTA />
       <Footer />

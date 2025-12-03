@@ -4,20 +4,47 @@ import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useState } from "react";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
 
 export function CTA() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send data to a backend
-    alert("Баярлалаа! Таны мэдээллийг хүлээн авлаа. Тун удахгүй холбогдох болно!");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/make-server-b7091b9c/registrations`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${publicAnonKey}`
+          },
+          body: JSON.stringify(formData)
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit registration');
+      }
+
+      alert("Баярлалаа! Таны мэдээллийг хүлээн авлаа. Тун удахгүй холбогдох болно!");
+      setFormData({ name: "", phone: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting registration:", error);
+      alert("Алдаа гарлаа. Дахин оролдоно уу.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -28,7 +55,7 @@ export function CTA() {
             Бүртгүүлэх хүсэлтээ илгээх
           </h2>
           <p className="text-slate-300 text-lg">
-            Таны coding аялал эндээс эхэлнэ
+            Та яг одоо бүртгүүлээд 5% хөнгөлөлт аваарай.
           </p>
         </div>
 
@@ -50,24 +77,11 @@ export function CTA() {
 
               <div>
                 <label className="block text-slate-300 mb-2">
-                  Имэйл хаяг <span className="text-red-400">*</span>
-                </label>
-                <Input
-                  type="email"
-                  required
-                  placeholder="example@email.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-slate-300 mb-2">
-                  Утасны дугаар
+                  Утасны дугаар <span className="text-red-400">*</span>
                 </label>
                 <Input
                   type="tel"
+                  required
                   placeholder="99xxxxxx"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -89,11 +103,12 @@ export function CTA() {
 
               <Button 
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white py-6"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white py-6 disabled:opacity-50"
                 size="lg"
               >
                 <Send className="w-5 h-5 mr-2" />
-                Мэдээлэл илгээх
+                {isSubmitting ? "Илгээж байна..." : "Мэдээлэл илгээх"}
               </Button>
             </form>
 
